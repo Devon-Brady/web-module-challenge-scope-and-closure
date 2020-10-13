@@ -26,11 +26,12 @@ function processFirstItem(stringList, callback) {
 /* Task 1: `counterMaker`
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
- * 1. What is the difference between counter1 and counter2?
+ * 1. What is the difference between counter1 and counter2? in counter 1 when it is invoked it will create a backpack(closure) that will incress count attached to the counter1 function. where the counter 2 function would incress the count variable in teh globe scope
  * 
- * 2. Which of the two uses a closure? How can you tell?
+ * 2. Which of the two uses a closure? How can you tell?count1 uses a closure because counter1 takes the function definition and surrounding variables that are reffeced in the definition and moves them into a new label in teh gloable scope with a closure attached
  * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?  When you need to keep the data persistant from past invokes
  *
 */
 
@@ -57,9 +58,8 @@ function counter2() {
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
 function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+  
+  return (Math.round(Math.random()*2));
 }
 
 /* Task 3: finalScore()
@@ -76,12 +76,20 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(inning,totalInnings){
+  let home = 0;
+  let away = 0;
+ for (let i = 0; i < totalInnings; i++){
+    home += inning();  
+    away += inning(); 
+    }
+      return {'Home':home , 'Away':away};
 }
 
+// console.log(finalScore(inning,9));
+// console.log(finalScore(inning,9));
+// console.log(finalScore(inning,9));
+// console.log(finalScore(inning,9));
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
@@ -103,8 +111,25 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function getInningScore(inning){
+  home = inning();  
+  away = inning(); 
+  return {'Home':home , 'Away':away};
 }
 
 
+
+function scoreboard(inning,getInningScore,totalInnings) {
+  for (let i = 0; i < totalInnings; i++){
+    if (i = 2,3) {
+      console.log(`${i}rd inning: ${getInningScore(inning)} `);
+    }
+    else {
+      console.log(`${i}st inning: ${getInningScore(inning)}`);
+  }
+
+  }
+
+}
+ 
+console.log(scoreboard(inning,getInningScore,9));
